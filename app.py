@@ -19,11 +19,9 @@ def load_user_data():
     with open('users.json') as f:
         return json.load(f)
 
-'''
-#When use Mysql
 with app.app_context():
     db.create_all() 
-'''
+
 
 @app.route('/')
 def index():
