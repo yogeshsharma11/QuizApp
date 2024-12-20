@@ -4,13 +4,26 @@ from models import db, Quiz, Question
 from flask import jsonify
 
 app = Flask(__name__)
+#Use Sqlite
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
+app.config['SECRET_KEY'] = 'a76b0e3382738170d6f881a39134d02d'
+'''
+#When Connect to MYSQL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/quiz'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+'''
 app.config['SECRET_KEY'] = 'a76b0e3382738170d6f881a39134d02d'
 db.init_app(app)
 
 def load_user_data():
     with open('users.json') as f:
         return json.load(f)
+
+'''
+#When use Mysql
+with app.app_context():
+    db.create_all() 
+'''
 
 @app.route('/')
 def index():
