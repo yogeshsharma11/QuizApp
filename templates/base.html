@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz App</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-slate-900 to-slate-700">
+
+    <div class="bg-gradient-to-r from-slate-500 to-slate-800 p-4 text-white flex justify-between items-center">
+        <div class="text-lg font-semibold">
+            {% if session['logged_in'] %}
+               
+                <a href="{{ url_for('admin') }}" class="mr-4">Admin Panel</a>
+            {% else %}
+                
+                Welcome User
+            {% endif %}
+        </div>
+
+        <div class="space-x-4">
+            {% if session['logged_in'] %}
+                
+                <a href="{{ url_for('logout') }}" class="text-white hover:underline">Logout</a>
+                <a href="{{ url_for('index') }}" class="text-white hover:underline">Quiz Page (User)</a>
+            {% else %}
+                
+                <a href="{{ url_for('index') }}" class="text-white hover:underline">Start Quiz</a>
+                <a href="{{ url_for('admin_login') }}" class="text-white hover:underline">Admin Login</a>
+            {% endif %}
+        </div>
+    </div>
+    
+        {% block content %}
+        
+        {% endblock %}
+
+</body>
+
+</html>
